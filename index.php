@@ -1,16 +1,23 @@
 <?php
+// include the ip address tracker file
 include_once('libs/ip.inc.php');
 
+// connect to the api
 function ip_details($ipAddress){
     $details = file_get_contents("http://ipinfo.io/{$ipAddress}");
     return $details;
 }
 
-$ipAddress = "149.56.64.166"; // ip();
+// get the ip address
+$ipAddress = ip();
+
+// get the details of ip address
 $details = ip_details($ipAddress);
 
-echo $details;
+// echo $details;
 $details = json_decode($details, true);
+
+// print_r($details);
 $country = strtolower($details['country']) . ".png";
 ?>
 
